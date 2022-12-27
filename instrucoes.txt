@@ -1,0 +1,86 @@
+#Inicio da aplicação 
+** NPM INIT -Y    ## Cria o Package.json##
+
+#Instalação das dependencias e das dev dependenci 
+** express
+** express=handlebars
+** mysql2
+** sequelize
+** nodemon (dev dependenci)
+
+npm install express express-handlebars mysql2 sequelize nodemon.
+
+#Configura o Package.json como script para startar como nodemon
+** "start": "nodemon ./index.js localhost 3000"
+
+#Cria o index.js
+
+#Cria as pastas de models, views, controllers, routes 
+
+#Cria a pasta de conexão como banco
+** Pasta: bd com o arquivo conn.js
+** no conn.js configuramos o acesso ao banco de dados.
+
+/**
+* const { Sequelize } = require('sequelize');
+                                   banco      user   senha     onde e qual o banco
+* const sequelize = new Sequelize('nodemvc', 'root', '',    {
+    host: 'localhost',
+    dialect: 'mysql'
+ });
+
+**/
+
+**Por ultimo exportamos o nosso modulo de conexão com o banco
+
+#Configurando o index.js para rodar a nossa aplicação
+
+o mesmo fica assim:
+const express = require('express');
+const exphbs = require('express-handlebars');
+
+const app = express();
+
+const conn = require('./db/conn');
+
+const port = 3000;
+
+/**
+ * Setando a engine e a view engine
+ */
+app.engine('handlebars', exphbs.engine());
+app.set('view engine', 'handlebars');
+
+/**
+ * Midllers para ler o corpo da requisição
+ */
+
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+);
+
+/**
+ * ler o corpo da requisição como json
+ */
+app.use(express.json());
+
+/**
+ * definindo caminho dos arquivos staticos.
+ */
+app.use(express.static('public'));
+
+
+
+/**
+ * executando a aplicação
+ */
+app.listen(port, ()=>{
+    console.log(`Aplicação rodando em : http://localhost:${port}`);
+})
+
+############ NÃO ESQUECER DE CRIAR A PASTA PUBLIC #############
+
+
+
