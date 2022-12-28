@@ -41,3 +41,21 @@ app.use(express.static('public'));
 app.listen(port, ()=>{
     console.log(`Aplicação rodando em : http://localhost:${port}`);
 })
+
+
+/**
+ * Apos criar o primeiro model usar a estrutura de inicializaçao da aplicação com o sequelize, para que 
+ * o mesmo efetue o mapeamento e crie as entidades e relacionamentos, subistituir o codigo acima pelo abaixo.
+ * 
+ * conn.sync()
+    .then(()=>{
+        app.listen(port, ()=>{
+            console.log(`Aplicação rodando em : http://localhost:${port}`);
+        });
+    })
+    .catch((err) => {
+        console.log(`Erro ao executar a aplicação: ${err}`);
+    });
+
+ * 
+ */
